@@ -1,0 +1,30 @@
+# Starter pipeline
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Microsoft Azure(1)(f749c1e8-dc73-4e3c-8e61-789022309f18)'
+    subscriptionId: 'f749c1e8-dc73-4e3c-8e61-789022309f18'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'aks-rg'
+    location: 'South Central US'
+    templateLocation: 'Linked artifact'
+    csmFile: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-winrm-windows/ConfigureWinRM.ps1'
+    deploymentMode: 'Incremental'
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
